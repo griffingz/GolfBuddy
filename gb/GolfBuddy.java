@@ -20,12 +20,7 @@ public class GolfBuddy {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        boolean running = true;
-        while (running) {
-            String choice = HomeScreen.prompt(scan);
-            HomeScreen.executeChoice(choice, scan);
-            running = false;
-        }
+        HomeScreen.prompt(scan);
         scan.close();
     }
 

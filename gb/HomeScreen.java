@@ -1,24 +1,24 @@
 package gb;
 
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class HomeScreen {
 
-    public static String prompt(Scanner scan) {
-        boolean choosing = true;
-        while (choosing) {
+    public static void prompt(Scanner scan) {
+        while (true) {
             GolfBuddy.clearScreen();
             System.out.println( "+-----------------------------------------------+\n" +
-                                "|                                               |\n" +
-                                "| Welcome To Golf Buddy!                        |\n" +
-                                "|                                               |\n" +
-                                "| What would you like to do?                    |\n" +
-                                "| 1. Enter a new scorecard                      |\n" +
-                                "| 2. Add a new course                           |\n" +
-                                "| 3. Review scores                              |\n" +
-                                "| Type \"HOME\" to go back home from any screen   |\n" +
-                                "| Type \"EXIT\" to exit Golf Buddy                |\n" +
-                                "|                                               |\n" +
+                                "|\n" +
+                                "| Welcome To Golf Buddy!\n" +
+                                "|\n" +
+                                "| What would you like to do?\n" +
+                                "| 1. Enter a new scorecard\n" +
+                                "| 2. Add a new course\n" +
+                                "| 3. Review scores\n" +
+                                "| Type \"HOME\" to go back home from any screen\n" +
+                                "| Type \"EXIT\" to exit Golf Buddy\n" +
+                                "|\n" +
                                 "+-----------------------------------------------+\n");
             String choice = scan.nextLine();
             if (choice.equals("1")                  || 
@@ -26,11 +26,18 @@ public class HomeScreen {
                 choice.equals("3")                  ||
                 choice.toUpperCase().equals("HOME") ||
                 choice.toUpperCase().equals("EXIT")) {
-                    choosing = false;
-                    return choice;
+                    executeChoice(choice, scan);
+                    break;
+            } else {
+                System.out.println("Not a valid choice!");
+                try {
+                    TimeUnit.SECONDS.sleep(5);
+                } catch (Exception e) {
+                    System.err.println("Failed to sleep program. Exiting.");
+                    System.exit(2);
+                }
             }
         }
-        return "ERROR";
     }
 
     public static void executeChoice(String choice, Scanner scan) {
@@ -43,6 +50,8 @@ public class HomeScreen {
         } else if (choice.toUpperCase().equals("EXIT")) {
             System.out.println("Exiting Golf Buddy...");
             System.exit(0);
+        } else if (choice.toUpperCase().equals("HOME")) {
+            prompt(scan);
         }
     }
 
