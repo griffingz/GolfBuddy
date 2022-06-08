@@ -1,8 +1,18 @@
 package gb;
 
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class GolfBuddy {
+
+    public static void sleep(int seconds) {
+        try {
+            TimeUnit.SECONDS.sleep(seconds);
+        } catch (Exception e) {
+            System.err.println("Failed to sleep program. Exiting.");
+            System.exit(2);
+        }
+    }
 
     public static void clearScreen() {
         final String os = System.getProperty("os.name");

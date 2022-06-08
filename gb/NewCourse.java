@@ -1,14 +1,15 @@
 package gb;
 
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class NewCourse {
 
-    public static boolean checkNamesFile(String name) {
+    private static boolean checkNamesFile(String name) {
         try {
             File courseFile = new File("CourseFile.csv");
             if (courseFile.createNewFile()) {
@@ -32,7 +33,7 @@ public class NewCourse {
         return true;
     }
 
-    public static boolean validCourseName(String name) {
+    private static boolean validCourseName(String name) {
         if (name.matches("^[a-zA-Z0-9_]{1,50}$")) {
             if (!checkNamesFile(name)) {
                 return true;
@@ -44,7 +45,7 @@ public class NewCourse {
         return name.matches("^[a-zA-Z0-9_]{1,50}$");
     }
 
-    public static boolean validNumHoles(String numHoles) {
+    private static boolean validNumHoles(String numHoles) {
         if (numHoles.matches("^[0-9]{1,2}$")) {
             if (Integer.parseInt(numHoles) > 0) {
                 return true;
@@ -53,7 +54,7 @@ public class NewCourse {
         return false;
     }
 
-    public static boolean validPars(String pars, int numHoles) {
+    private static boolean validPars(String pars, int numHoles) {
         String regex = "^";
         for (int i = 1; i <= numHoles; i++) {
             if (i != numHoles) {
@@ -88,17 +89,12 @@ public class NewCourse {
             } else {
                 System.out.println("NOT A VALID COURSE NAME!\n" +
                                     "Course names must be unique, alphanumeric and can include underscores.");
-                try {
-                    TimeUnit.SECONDS.sleep(5);
-                } catch (Exception e) {
-                    System.err.println("Failed to sleep program. Exiting.");
-                    System.exit(2);
-                }
+                GolfBuddy.sleep(5);
             }
         }
     }
 
-    public static void promptNumHoles(String name, Scanner scan) {
+    private static void promptNumHoles(String name, Scanner scan) {
         while (true) {
             GolfBuddy.clearScreen();
             System.out.println( "+-----------------------------------------------+\n" +
@@ -118,17 +114,12 @@ public class NewCourse {
             } else {
                 System.out.println("NOT A VALID NUMBER OF HOLES!\n" +
                                     "Number of holes must be between 1 and 99.");
-                try {
-                    TimeUnit.SECONDS.sleep(5);
-                } catch (Exception e) {
-                    System.err.println("Failed to sleep program. Exiting.");
-                    System.exit(2);
-                }
+                GolfBuddy.sleep(5);
             }
         }
     }
 
-    public static void promptPars(String name, int numHoles, Scanner scan) {
+    private static void promptPars(String name, int numHoles, Scanner scan) {
         while (true) {
             GolfBuddy.clearScreen();
             System.out.println( "+-----------------------------------------------+\n" +
@@ -144,29 +135,19 @@ public class NewCourse {
             if (validPars(pars, numHoles)) {
                 addCourseToFile(name, numHoles, pars);
                 System.out.println("Course Successfully Added!");
-                try {
-                    TimeUnit.SECONDS.sleep(3);
-                } catch (Exception e) {
-                    System.err.println("Failed to sleep program. Exiting.");
-                    System.exit(2);
-                }
+                GolfBuddy.sleep(3);
                 HomeScreen.prompt(scan);
                 break;
             } else if (pars.toUpperCase().equals("HOME")) {
                 HomeScreen.prompt(scan);
             } else {
                 System.out.println("NOT A VALID STRING OF PARS!\n");
-                try {
-                    TimeUnit.SECONDS.sleep(5);
-                } catch (Exception e) {
-                    System.err.println("Failed to sleep program. Exiting.");
-                    System.exit(2);
-                }
+                GolfBuddy.sleep(5);
             }
         }
     }
 
-    public static void addCourseToFile(String name, int numHoles, String pars) {
+    private static void addCourseToFile(String name, int numHoles, String pars) {
         try {
             File courseFile = new File("CourseFile.csv");
             courseFile.createNewFile();
@@ -174,10 +155,32 @@ public class NewCourse {
             String line = name + "," + numHoles + "," + pars + ",\n";
             courseBufferedWriter.append(line);
             courseBufferedWriter.close();
+            sortCourseFile();
         } catch (Exception e) {
             System.err.println("Failed to write to course file. Exiting.");
             e.printStackTrace();
             System.exit(3);
+        }
+    }
+
+    private static void sortCourseFile() {
+        try {
+            File courseFile = new File("CourseFile.csv");
+            Scanner courseScan = new Scanner(courseFile);
+            ArrayList<String> lines = new ArrayList<>();
+            while (courseScan.hasNextLine()) {
+                lines.add(courseScan.nextLine() + "\n");
+            }
+            courseScan.close();
+            Collections.sort(lines);
+            FileWriter courseWriter = new FileWriter("CourseFile.csv");
+            for (String line : lines) {
+                courseWriter.write(line);
+            }
+            courseWriter.close();
+        } catch (Exception e) {
+            System.err.println("Failed to sort course file. Exiting.");
+            System.exit(5);
         }
     }
     
