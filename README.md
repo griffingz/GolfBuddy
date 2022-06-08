@@ -6,4 +6,4 @@ A desktop application for golf, mini golf, and disc golf scorecards.
 * View best, average and worst scores for courses and for individual holes
 
 ### Currently in progress:
-* Adding a new scorecard for an existing course
+* Review your scorecards for a specific course
