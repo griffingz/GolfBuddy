@@ -1,7 +1,6 @@
 package gb;
 
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 public class HomeScreen {
 
@@ -30,17 +29,12 @@ public class HomeScreen {
                     break;
             } else {
                 System.out.println("Not a valid choice!");
-                try {
-                    TimeUnit.SECONDS.sleep(5);
-                } catch (Exception e) {
-                    System.err.println("Failed to sleep program. Exiting.");
-                    System.exit(2);
-                }
+                GolfBuddy.sleep(5);
             }
         }
     }
 
-    public static void executeChoice(String choice, Scanner scan) {
+    private static void executeChoice(String choice, Scanner scan) {
         if (choice.equals("1")) {
             NewScorecard.prompt(scan);
         } else if (choice.equals("2")) {
