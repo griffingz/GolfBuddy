@@ -95,7 +95,7 @@ public class NewScorecard {
                 break;
             } else {
                 System.out.println("INVALID COURSE! Please pick a number.");
-                GolfBuddy.sleep(5);
+                GolfBuddy.sleep(3);
             }
         }
     }
@@ -123,7 +123,7 @@ public class NewScorecard {
                 break;
             } else {
                 System.out.println("INVALID DATE!");
-                GolfBuddy.sleep(5);
+                GolfBuddy.sleep(3);
             }
         }
     }
@@ -152,7 +152,7 @@ public class NewScorecard {
                 break;
             } else {
                 System.out.println("INVALID SCORES!");
-                GolfBuddy.sleep(5);
+                GolfBuddy.sleep(3);
             }
         }
     }

@@ -29,7 +29,7 @@ public class HomeScreen {
                     break;
             } else {
                 System.out.println("Not a valid choice!");
-                GolfBuddy.sleep(5);
+                GolfBuddy.sleep(3);
             }
         }
     }
