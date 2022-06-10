@@ -89,7 +89,7 @@ public class NewCourse {
             } else {
                 System.out.println("NOT A VALID COURSE NAME!\n" +
                                     "Course names must be unique, alphanumeric and can include underscores.");
-                GolfBuddy.sleep(5);
+                GolfBuddy.sleep(3);
             }
         }
     }
@@ -114,7 +114,7 @@ public class NewCourse {
             } else {
                 System.out.println("NOT A VALID NUMBER OF HOLES!\n" +
                                     "Number of holes must be between 1 and 99.");
-                GolfBuddy.sleep(5);
+                GolfBuddy.sleep(3);
             }
         }
     }
@@ -142,7 +142,7 @@ public class NewCourse {
                 HomeScreen.prompt(scan);
             } else {
                 System.out.println("NOT A VALID STRING OF PARS!\n");
-                GolfBuddy.sleep(5);
+                GolfBuddy.sleep(3);
             }
         }
     }
