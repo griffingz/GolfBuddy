@@ -309,6 +309,9 @@ public class ReviewScores {
                                 "| below to perform the following actions:\n" +
                                 "| E: Edit scorecard\n" +
                                 "| D: Delete scorecard\n" +
+                                "|\n" +
+                                "| Or enter \"BACK\" to go back to the course\n" +
+                                "| overview screen.\n" +
                                 "+-----------------------------------------------+");
             String choice = scan.nextLine();
             if (validScorecard(courseName, choice)) {
@@ -320,9 +323,14 @@ public class ReviewScores {
                     break;
                 } else {
                     // TODO: Implement editing scorecards
+                    System.out.println("THIS FEATURE IS UNDER CONSTRUCTION. CHECK BACK LATER.");
+                    GolfBuddy.sleep(3);
                 }
             } else if (choice.toUpperCase().equals("HOME")) {
                 HomeScreen.prompt(scan);
+                break;
+            } else if (choice.toUpperCase().equals("BACK")) {
+                courseOverview(courseName, scan);
                 break;
             } else {
                 System.out.println("INVALID OPTION!");
