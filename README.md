@@ -6,12 +6,14 @@ A desktop application for golf, mini golf, and disc golf scorecards.
   * Courses are added with name, number of holes, and pars
 * Add scorecards for courses
   * Scorecards are added with course name, date, and scores
+* Review course overview statistics
+* View scorecards for courses
+* Delete scorecards
+* Delete courses
 
 ### Currently in progress:
-* View your best, average and worst scores for your courses
+* None
 
 ### To Do:
-* View scorecards for your courses
-* View your best, average and worst scores for each hole on a specific course
 * Modify existing scorecards
-* Delete existing scorecards
+* Clean code
