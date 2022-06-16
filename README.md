@@ -15,5 +15,4 @@ A desktop application for golf, mini golf, and disc golf scorecards.
 * None
 
 ### To Do:
-* Modify existing scorecards
-* Clean code
+https://github.com/griffingz/GolfBuddy/issues
