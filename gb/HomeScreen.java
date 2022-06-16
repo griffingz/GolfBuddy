@@ -14,7 +14,8 @@ public class HomeScreen {
                                 "| What would you like to do?\n" +
                                 "| 1. Enter a new scorecard\n" +
                                 "| 2. Add a new course\n" +
-                                "| 3. Review scores\n" +
+                                "| 3. Remove a course\n" +
+                                "| 4. Review scores\n" +
                                 "| Type \"HOME\" to go back home from any screen\n" +
                                 "| Type \"EXIT\" to exit Golf Buddy\n" +
                                 "|\n" +
@@ -23,6 +24,7 @@ public class HomeScreen {
             if (choice.equals("1")                  || 
                 choice.equals("2")                  ||
                 choice.equals("3")                  ||
+                choice.equals("4")                  ||
                 choice.toUpperCase().equals("HOME") ||
                 choice.toUpperCase().equals("EXIT")) {
                     executeChoice(choice, scan);
@@ -40,6 +42,8 @@ public class HomeScreen {
         } else if (choice.equals("2")) {
             NewCourse.prompt(scan);
         } else if (choice.equals("3")) {
+            RemoveCourse.prompt(scan);
+        } else if (choice.equals("4")) {
             ReviewScores.prompt(scan);
         } else if (choice.toUpperCase().equals("EXIT")) {
             System.out.println("Exiting Golf Buddy...");
