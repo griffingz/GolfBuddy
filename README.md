@@ -12,7 +12,7 @@ A desktop application for golf, mini golf, and disc golf scorecards.
 * Delete courses
 
 ### Currently in progress:
-[Assigned Issues]()
+[Assigned Issues](https://github.com/griffingz/GolfBuddy/issues?q=is%3Aissue+is%3Aopen+-label%3Aunassigned+)
 
 ### To Do:
 [Unassigned Issues](https://github.com/griffingz/GolfBuddy/issues?q=is%3Aopen+is%3Aissue+no%3Aassignee)
