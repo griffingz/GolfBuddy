@@ -142,7 +142,7 @@ public class ReviewScores {
                             "|");
     }
 
-    private static void printHoleStats(String[][] scorecards) {
+    private static void printHoleStats(String[][] scorecards, Integer[] pars) {
         if (scorecards.length > 0) {
             for (int i = 2; i < scorecards[0].length; i++) {
                 int holeBest = 99999;
@@ -150,7 +150,7 @@ public class ReviewScores {
                 int holeSum = 0;
                 for (int j = 0; j < scorecards.length; j++) {
                     int currentHoleScore = Integer.parseInt(scorecards[j][i]);
-                    holeSum = holeSum + currentHoleScore;
+                    holeSum = holeSum + currentHoleScore - pars[i-2];
                     if (currentHoleScore < holeBest) {
                         holeBest = currentHoleScore;
                     }
@@ -158,6 +158,8 @@ public class ReviewScores {
                         holeWorst = currentHoleScore;
                     }
                 }
+                holeBest = holeBest - pars[i-2];
+                holeWorst = holeWorst - pars[i-2];
                 double holeAverage = holeSum / (double) scorecards.length;
                 String avgString = String.format("%,.2f", holeAverage);
                 System.out.println("| Hole " + (i-1) + ": Best: " + holeBest + " Average: " + avgString + " Worst: " + holeWorst);
@@ -278,7 +280,7 @@ public class ReviewScores {
             String[][] scorecards = getCourseScorecards(courseName);
             Integer[] pars = getCoursePars(courseName);
             printCourseStats(scorecards, pars);
-            printHoleStats(scorecards);
+            printHoleStats(scorecards, pars);
             System.out.println( "|\n" +
                                 "| Enter \"VIEW\" to view scorecards\n" +
                                 "+-----------------------------------------------+");
