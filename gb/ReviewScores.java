@@ -1,6 +1,9 @@
 package gb;
 
 import java.util.Scanner;
+
+import javax.lang.model.util.ElementScanner6;
+
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileWriter;
@@ -169,14 +172,68 @@ public class ReviewScores {
 
     private static void printCourseScorecards(String courseName) {
         String[][] scorecards = getCourseScorecards(courseName);
-        System.out.println("| |#|Date      |Holes");
+        Integer[] pars = getCoursePars(courseName);
+        System.out.println("                      Holes");
+        System.out.print("| |#|Date      |Total|");
+        if (scorecards.length > 0) {
+            for (int i = 2; i < scorecards[0].length; i++) {
+                if (i-1 < 10)
+                    System.out.print((i-1) + " |");
+                else
+                    System.out.print((i-1) + "|");
+            }
+        }
+        System.out.println();
+
         for (int i = 0; i < scorecards.length; i++) {
+
+            int totalScore = 0;
+            for (int j = 2; j < scorecards[i].length; j++) {
+                totalScore = totalScore + Integer.parseInt(scorecards[i][j]) - pars[j-2];
+            }
+
             System.out.print("| |" + (i+1) + "|");
             for (int j = 1; j < scorecards[i].length; j++) {
-                if (scorecards[i][j].equals("UNKNOWN"))
+                if (scorecards[i][j].equals("UNKNOWN")) {
                     System.out.print(scorecards[i][j] + "   |");
-                else
+                    if (totalScore < -99)
+                        System.out.print(totalScore + " |");
+                    else if (totalScore < -9)
+                        System.out.print(totalScore + "  |");
+                    else if (totalScore < 0)
+                        System.out.print(totalScore + "   |");
+                    else if (totalScore < 10)
+                        System.out.print(totalScore + "    |");
+                    else if (totalScore < 100)
+                        System.out.print(totalScore + "   |");
+                    else if (totalScore < 1000)
+                        System.out.print(totalScore + "  |");
+                    else
+                        System.out.print(totalScore + "|");
+                } else if (scorecards[i][j].contains("/")) {
                     System.out.print(scorecards[i][j] + "|");
+                    if (totalScore < -99)
+                        System.out.print(totalScore + " |");
+                    else if (totalScore < -9)
+                        System.out.print(totalScore + "  |");
+                    else if (totalScore < 0)
+                        System.out.print(totalScore + "   |");
+                    else if (totalScore < 10)
+                        System.out.print(totalScore + "    |");
+                    else if (totalScore < 100)
+                        System.out.print(totalScore + "   |");
+                    else if (totalScore < 1000)
+                        System.out.print(totalScore + "  |");
+                    else
+                        System.out.print(totalScore + "|");
+                } else {
+                    System.out.print(scorecards[i][j]);
+                    if (Integer.parseInt(scorecards[i][j]) > 9) {
+                        System.out.print("|");
+                    } else {
+                        System.out.print(" |");
+                    }
+                }
             }
             System.out.println();
         }
